@@ -1,1 +1,396 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>karan - Fashion E-Commerce</title>
+    <style>
+        /* CSS Reset and Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #2c4152; /* Ajio-like dark blue/grey */
+            --text-dark: #333;
+            --text-light: #777;
+            --bg-light: #f4f4f4;
+            --white: #ffffff;
+            --accent: #dca353; /* Gold accent */
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent);
+        }
+
+        .search-cart {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            padding: 8px 15px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            width: 250px;
+            outline: none;
+        }
+
+        .icons a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-left: 15px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80&w=1200&h=400') center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero button {
+            padding: 12px 30px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .hero button:hover {
+            background-color: var(--accent);
+        }
+
+        /* Category Section */
+        .categories {
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-around;
+            background-color: var(--bg-light);
+        }
+
+        .category-item {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .category-item h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        /* Product Grid */
+        .products-section {
+            padding: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            color: var(--primary-color);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .brand {
+            color: var(--text-light);
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .product-name {
+            font-size: 14px;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+            color: var(--accent);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #ddd;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>AJIO</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Kids</a></li>
+            <li><a href="#">Indie</a></li>
+            <li><a href="#">Home & Kitchen</a></li>
+        </ul>
+        <div class="search-cart">
+            <input type="text" class="search-bar" placeholder="Search for products, brands...">
+            <div class="icons">
+                <a href="#">Profile</a>
+                <a href="#">Cart (0)</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <h2>Big Bold Sale</h2>
+        <p style="margin-bottom: 20px; font-size: 18px;">50% - 90% Off on Top Brands</p>
+        <button>Shop Now</button>
+    </header>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="category-item">
+            <img src="https://images.unsplash.com/photo-1515347619152-140b955743b1?w=200&h=200&fit=crop" alt="Tees">
+            <h3>Tees</h3>
+        </div>
+        <div class="category-item">
+            <img src="https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=200&h=200&fit=crop" alt="Jeans">
+            <h3>Jeans</h3>
+        </div>
+        <div class="category-item">
+            <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=200&h=200&fit=crop" alt="Sneakers">
+            <h3>Sneakers</h3>
+        </div>
+        <div class="category-item">
+            <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=200&h=200&fit=crop" alt="Bags">
+            <h3>Bags</h3>
+        </div>
+        <div class="category-item">
+            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&h=200&fit=crop" alt="Watches">
+            <h3>Watches</h3>
+        </div>
+    </section>
+
+    <!-- Product Grid -->
+    <section class="products-section">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="product-grid">
+            
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop" alt="Product">
+                <p class="brand">Netplay</p>
+                <h3 class="product-name">Slim Fit Cotton T-Shirt</h3>
+                <p class="price">₹ 499</p>
+                <button class="add-to-cart">Add to Bag</button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1434389670869-c41eb1ca794f?w=400&h=500&fit=crop" alt="Product">
+                <p class="brand">DNMX</p>
+                <h3 class="product-name">Men Relaxed Fit Jeans</h3>
+                <p class="price">₹ 999</p>
+                <button class="add-to-cart">Add to Bag</button>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&h=500&fit=crop" alt="Product">
+                <p class="brand">Teamspirit</p>
+                <h3 class="product-name">Faux Leather Jacket</h3>
+                <p class="price">₹ 1,499</p>
+                <button class="add-to-cart">Add to Bag</button>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=500&fit=crop" alt="Product">
+                <p class="brand">Avaasa Mix N Match</p>
+                <h3 class="product-name">Women Printed Kurta</h3>
+                <p class="price">₹ 799</p>
+                <button class="add-to-cart">Add to Bag</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-col">
+            <h4>Ajio</h4>
+            <ul>
+                <li><a href="#">Who We Are</a></li>
+                <li><a href="#">Join Our Team</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Help</h4>
+            <ul>
+                <li><a href="#">Track Your Order</a></li>
+                <li><a href="#">Returns & Cancellations</a></li>
+                <li><a href="#">Customer Care</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Shop By</h4>
+            <ul>
+                <li><a href="#">Men</a></li>
+                <li><a href="#">Women</a></li>
+                <li><a href="#">Kids</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
