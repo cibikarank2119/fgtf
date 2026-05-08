@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>karan - Fashion E-Commerce</title>
+    <title> swadan - Fashion E-Commerce</title>
     <style>
-        /* CSS Reset and Variables */
+        /* --- CSS Reset and Variables --- */
         * {
             margin: 0;
             padding: 0;
@@ -28,7 +27,7 @@
             color: var(--text-dark);
         }
 
-        /* Navbar Styling */
+        /* --- Navbar Styling --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -89,7 +88,7 @@
             margin-left: 15px;
         }
 
-        /* Hero Banner */
+        /* --- Hero Banner --- */
         .hero {
             width: 100%;
             height: 400px;
@@ -125,7 +124,7 @@
             background-color: var(--accent);
         }
 
-        /* Category Section */
+        /* --- Category Section --- */
         .categories {
             padding: 40px 50px;
             display: flex;
@@ -153,7 +152,7 @@
             text-transform: uppercase;
         }
 
-        /* Product Grid */
+        /* --- Product Grid --- */
         .products-section {
             padding: 50px;
         }
@@ -231,7 +230,7 @@
             color: var(--white);
         }
 
-        /* Footer */
+        /* --- Footer --- */
         footer {
             background-color: var(--primary-color);
             color: var(--white);
@@ -264,6 +263,62 @@
         .footer-col ul li a:hover {
             color: var(--white);
         }
+
+        /* --- MOBILE RESPONSIVENESS (Media Queries) --- */
+        @media (max-width: 768px) {
+            /* Stack Navbar elements */
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .search-cart {
+                width: 100%;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            /* Adjust Hero Text */
+            .hero {
+                height: 300px;
+                padding: 0 20px;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            /* Allow Categories to wrap onto multiple lines */
+            .categories {
+                flex-wrap: wrap;
+                gap: 20px;
+                padding: 30px 20px;
+            }
+
+            .products-section {
+                padding: 30px 20px;
+            }
+
+            /* Stack Footer columns */
+            footer {
+                flex-direction: column;
+                gap: 30px;
+                padding: 30px 20px;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -278,7 +333,7 @@
             <li><a href="#">Women</a></li>
             <li><a href="#">Kids</a></li>
             <li><a href="#">Indie</a></li>
-            <li><a href="#">Home & Kitchen</a></li>
+            <li><a href="#">Home</a></li>
         </ul>
         <div class="search-cart">
             <input type="text" class="search-bar" placeholder="Search for products, brands...">
@@ -331,7 +386,7 @@
                 <p class="brand">Netplay</p>
                 <h3 class="product-name">Slim Fit Cotton T-Shirt</h3>
                 <p class="price">₹ 499</p>
-                <button class="add-to-cart">Add to Bag</button>
+                <button class="add-to-cart" onclick="alert('Item added to bag!')">Add to Bag</button>
             </div>
 
             <!-- Product 2 -->
@@ -340,7 +395,7 @@
                 <p class="brand">DNMX</p>
                 <h3 class="product-name">Men Relaxed Fit Jeans</h3>
                 <p class="price">₹ 999</p>
-                <button class="add-to-cart">Add to Bag</button>
+                <button class="add-to-cart" onclick="alert('Item added to bag!')">Add to Bag</button>
             </div>
 
             <!-- Product 3 -->
@@ -349,7 +404,7 @@
                 <p class="brand">Teamspirit</p>
                 <h3 class="product-name">Faux Leather Jacket</h3>
                 <p class="price">₹ 1,499</p>
-                <button class="add-to-cart">Add to Bag</button>
+                <button class="add-to-cart" onclick="alert('Item added to bag!')">Add to Bag</button>
             </div>
 
             <!-- Product 4 -->
@@ -358,7 +413,7 @@
                 <p class="brand">Avaasa Mix N Match</p>
                 <h3 class="product-name">Women Printed Kurta</h3>
                 <p class="price">₹ 799</p>
-                <button class="add-to-cart">Add to Bag</button>
+                <button class="add-to-cart" onclick="alert('Item added to bag!')">Add to Bag</button>
             </div>
 
         </div>
